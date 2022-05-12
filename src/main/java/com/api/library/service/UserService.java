@@ -1,7 +1,7 @@
 package com.api.library.service;
 
+import com.api.library.entity.Article;
 import com.api.library.entity.User;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,4 +16,8 @@ public interface UserService {
     User getUserByUsername(String username);
 
     User getUserByUsernameAndPassword(String username, String password);
+
+    Article setApprovedTrue(Long id);
+
+    void delete(Long id);
 }

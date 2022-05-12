@@ -3,6 +3,7 @@ package com.api.library.configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -58,7 +59,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // dont authenticate this particular request
                 .authorizeRequests()
                 .antMatchers("/authenticate").permitAll()
-                .antMatchers("/articles").permitAll()
+                .antMatchers("/articles/**").permitAll()
+                .antMatchers(HttpMethod.POST , "/comments/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/comments/**").permitAll()
+                .antMatchers("/rating/**").permitAll()
                 .anyRequest().authenticated().and().
                 // make sure we use stateless session; session won't be used to
                 // store user's state.

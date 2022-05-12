@@ -8,6 +8,10 @@ import java.util.Optional;
 public interface ArticleService {
     List<Article> findByApprovedTrue();
 
-    Optional<Article> findArticleById(String articleId);
+    Optional<Article> findArticleById(Long articleId);
 
+    Article createArticle(Article article);
+
+
+    List<Article> findAll();
 }

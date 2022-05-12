@@ -3,7 +3,6 @@ package com.api.library.service.impl;
 import com.api.library.entity.Article;
 import com.api.library.repository.ArticleRepository;
 import com.api.library.service.ArticleService;
-import org.hibernate.criterion.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +22,17 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Optional<Article> findArticleById(String articleId) {
-        return articleRepository.findById(Long.parseLong(articleId));
+    public Optional<Article> findArticleById(Long id) {
+        return articleRepository.findById(id);
+    }
+
+    @Override
+    public Article createArticle(Article article) {
+        return articleRepository.save(article);
+    }
+
+    @Override
+    public List<Article> findAll() {
+        return articleRepository.findAll();
     }
 }
